@@ -238,6 +238,12 @@ gpu_tracker/
 - The GUI automatically detects whether OpenCV or PyTorch CUDA backends are available.
 - The tracker is designed for single-object video sequences and uses both appearance and motion cues.
 
+## Limitations
+
+1. **Motion model logic** — The constant-velocity Kalman filter relies purely on object velocity extracted from frame coordinates. Future improvements could integrate IMU and gyroscope data from the camera to estimate global motion (pan, tilt, roll) more accurately, reducing false drift during camera movement.
+
+2. **GPU acceleration** — OpenCV's native CUDA support is limited. Many OpenCV operations fall back to CPU execution. Further acceleration is possible by using custom CUDA wheels or re-implementing performance-critical functions (template matching, optical flow) with custom kernels for better GPU utilization.
+
 ## License
 
 MIT
